@@ -57,7 +57,7 @@ function s:Ywvim_loadvar() " Load global user vars.{{{
         unlet g:ywvim_ims
     endif
     if s:ywvim_ims==[]
-        finish
+        return
     endif
 
     let varlst = [
@@ -844,15 +844,11 @@ function s:Ywvim_NewBufFix() "{{{1 Fix new buffer's (lang) bug
         setlocal iminsert=0
     endif
 endfunction "}}}
-autocmd BufEnter * call <SID>Ywvim_NewBufFix()
+augroup ywvim_setting
+    autocmd BufEnter * call <SID>Ywvim_NewBufFix()
+augroup END
 
-imap <silent> <C-\> <C-R>=Ywvim_toggle()<CR>
-cmap <silent> <C-\> <C-R>=Ywvim_toggle()<CR>
 imap <silent> <C-Space> <C-R>=Ywvim_toggle()<CR>
 cmap <silent> <C-Space> <C-R>=Ywvim_toggle()<CR>
-imap <silent> <C-S-Space> <C-R>=Ywvim_toggle()<CR>
-cmap <silent> <C-S-Space> <C-R>=Ywvim_toggle()<CR>
-imap <silent> <C-@> <C-R>=Ywvim_toggle()<CR>
-cmap <silent> <C-@> <C-R>=Ywvim_toggle()<CR>
 
 " vim: foldmethod=marker:
